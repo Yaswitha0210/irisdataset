@@ -1,0 +1,21 @@
+import csv
+import pandas as pd
+
+fn = pd.read_csv("convert.csv")
+print("Minimum values:\n",fn.min())
+print("\n\nMaximym values:\n",fn.max())
+print("\n\nMean: \n",fn.mean())
+print("\n\nSD \n",fn.std())
+fn_setosa_versicolor = fn[fn['Class'].isin(['Iris-setosa', 'Iris-versicolor'])]
+fn_versicolor_virginica = fn[fn['Class'].isin(['Iris-versicolor', 'Iris-virginica'])]
+fn_virginica_setosa = fn[fn['Class'].isin(['Iris-virginica', 'Iris-setosa'])]
+
+correlation_setosa_versicolor = fn_setosa_versicolor['Sepal Length'].corr(fn_setosa_versicolor['Petal Length'])
+correlation_versicolor_virginica = fn_versicolor_virginica['Sepal Length'].corr(fn_versicolor_virginica['Petal Length'])
+correlation_virginica_setosa = fn_virginica_setosa['Sepal Length'].corr(fn_virginica_setosa['Petal Length'])
+
+
+print("\n\nCorrelation -")
+print(f"Correlation btw Iris Setosa and Iris Versicolour: {correlation_setosa_versicolor}")
+print(f"Correlation btw Iris Versicolour and Iris Virginica: {correlation_versicolor_virginica}")
+print(f"Correlation btw Iris Virginica and Iris Setosa: {correlation_virginica_setosa}")
